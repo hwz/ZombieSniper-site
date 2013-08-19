@@ -1,0 +1,46 @@
+extends layout
+
+
+block content
+    section(class="featured")
+      div(class="content-wrapper")
+        hgroup(class="title")
+        h1=title 
+        h2 Purchase
+        p convince people to buy this game
+
+    section(class="main-content")
+        div#payment-errors
+        
+        div
+          form(id='payment-form', action='/stripe', method='post')
+            div.form-row
+              p Choose an amount:
+              input(id='amount10', value='10', name='radio_amount', type='radio', checked)
+              label(for='amount10')$10 
+              input(id='amount5', value='5', name='radio_amount', type='radio')
+              label(for='amount5')$5
+              input(id='amount2', value='2', name='radio_amount', type='radio')
+              label(for='amount2')$2
+              input(id='amount_custom', value='custom', name='radio_amount', type='radio')
+              label(for='amount_custom') Custom Amount
+              input(id='amount_custom', name='master_amount', type="text")
+            div.form-row
+              label(for='name') Name: 
+              input(name='name', type='text', size='30', class='required')
+            div.form-row
+              label(for='email') Email: 
+              input(name='email', type='text', size='30', class='required')
+            div.form-row
+              label(for='card-number') Card Number:
+              input(name='card-number', type='text', size='20', class='card-number stripe-sensitive required')
+              label(for='cvc') CVC Number:
+              input(name='cvc', type='text', size='5', class='card-cvc stripe-sensitive required')
+            div.form-row
+              label Expiry Info 
+              input(class='card-expiry-month stripe-sensitive required', size='2')/
+              input(class='card-expiry-year stripe-sensitive required', size='4')
+            div.form-row
+              input(type='submit', class='submit-button', label='submit')
+            
+          
